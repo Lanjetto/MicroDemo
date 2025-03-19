@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.nexign'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    springVersion = '3.4.3'
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}"
+    implementation 'org.liquibase:liquibase-core:4.31.1'
+    implementation 'org.postgresql:postgresql:42.7.5'
+    compileOnly 'org.projectlombok:lombok:1.18.36'
+
+
+    compileOnly 'org.mapstruct:mapstruct:1.6.0'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
+    annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+}
+
+test {
+    useJUnitPlatform()
+}

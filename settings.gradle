@@ -1,0 +1,5 @@
+rootProject.name = 'MicroDemo'
+include 'OrderService'
+include 'DiscountService'
+include 'NotificationService'
+

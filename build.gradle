@@ -1,0 +1,22 @@
+//
+//
+//plugins {
+//    id 'java'
+//}
+//
+//repositories {
+//    mavenCentral()
+//}
+//
+//group = 'com.nexign'
+//version = '1.0-SNAPSHOT'
+//
+//subprojects {
+//    ext {
+//        springVersion = '3.4.3'
+//    }
+//    dependencies {
+//        implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
+//    }
+//}
+//
