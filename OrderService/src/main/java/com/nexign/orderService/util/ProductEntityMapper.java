@@ -9,7 +9,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ProductEntityMapper {
-    ProductEntityMapper INSTANCE = Mappers.getMapper(ProductEntityMapper.class);
     ProductEntity toEntity(Product product);
     Product toProduct(ProductEntity productEntity);
 }

@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: developer
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: type
+                  type: VARCHAR(255)
+                  defaultValue: 'REGULAR'
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: developer
+      changes:
+        - addColumn:
+            tableName: products
+            columns:
+              - column:
+                  name: category
+                  type: VARCHAR(255)
+                  defaultValue: 'GENERAL'
+                  constraints:
+                    nullable: false

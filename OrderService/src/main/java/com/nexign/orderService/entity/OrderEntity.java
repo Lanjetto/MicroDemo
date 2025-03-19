@@ -25,6 +25,7 @@ public class OrderEntity {
     @JoinColumn(name = "product_id", nullable = false)
     private ProductEntity product;
 
+
     @Column(name = "total_price", nullable = false, precision = 10, scale = 2)
     private BigDecimal totalPrice;
 

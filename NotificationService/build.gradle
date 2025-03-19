@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    springVersion = '3.4.3'
+}
+
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'

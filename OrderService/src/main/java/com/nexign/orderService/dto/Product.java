@@ -5,5 +5,5 @@ import java.math.BigDecimal;
 /**
  * DTO for {@link com.nexign.orderService.entity.ProductEntity}
  */
-public record Product(String name, BigDecimal price) {
+public record Product(String name, BigDecimal price, String category) {
 }

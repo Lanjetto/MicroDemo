@@ -13,6 +13,17 @@ public class UserEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "type", nullable = false)
+    private String type;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Integer getId() {
         return id;
     }

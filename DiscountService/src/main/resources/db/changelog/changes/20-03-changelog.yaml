@@ -1,0 +1,33 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: your_username
+      changes:
+        - update:
+            tableName: discount_rules
+            where: "discount_value = 10"
+            columns:
+              - column:
+                  name: discount_value
+                  value: 0.1
+        - update:
+            tableName: discount_rules
+            where: "discount_value = 15"
+            columns:
+              - column:
+                  name: discount_value
+                  value: 0.15
+        - update:
+            tableName: discount_rules
+            where: "discount_value = 20"
+            columns:
+              - column:
+                  name: discount_value
+                  value: 0.2
+        - update:
+            tableName: discount_rules
+            where: "discount_type = 'FIXED'"
+            columns:
+              - column:
+                  name: discount_type
+                  value: 'PERCENT'

@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: developer
+      changes:
+        - update:
+            tableName: products
+            where: "category IS NOT NULL"
+            columns:
+              - column:
+                  name: category
+                  value: electronics
