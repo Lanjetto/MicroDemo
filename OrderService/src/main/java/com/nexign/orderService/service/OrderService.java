@@ -9,7 +9,9 @@ import com.nexign.orderService.repostitory.OrderEntityRepository;
 import com.nexign.orderService.repostitory.ProductEntityRepository;
 import com.nexign.orderService.repostitory.UserEntityRepository;
 import com.nexign.orderService.util.OrderEntityMapper;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -24,14 +26,19 @@ public class OrderService {
     private final UserEntityRepository userRepository;
     private final DiscountServiceClient discountServiceClient;
     private final OrderEntityMapper orderMapper;
+    private final RabbitTemplate rabbitTemplate;
+
+    @Value("${rabbitmq.queue.name}")
+    private String queueName;
 
     @Autowired
-    public OrderService(OrderEntityRepository orderRepository, ProductEntityRepository productRepository, UserEntityRepository userRepository, DiscountServiceClient discountServiceClient, OrderEntityMapper orderMapper) {
+    public OrderService(OrderEntityRepository orderRepository, ProductEntityRepository productRepository, UserEntityRepository userRepository, DiscountServiceClient discountServiceClient, OrderEntityMapper orderMapper, RabbitTemplate rabbitTemplate) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
         this.userRepository = userRepository;
         this.discountServiceClient = discountServiceClient;
         this.orderMapper = orderMapper;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     public List<Order> getAllOrders() {
@@ -65,6 +72,9 @@ public class OrderService {
         entity.setTotalPrice(productEntity.getPrice().multiply(BigDecimal.valueOf(1-discount)));
         orderRepository.save(entity);
         Logger.getLogger(OrderService.class.getName()).info("Created order: " + entity + "\n Discount: " + discount);
+
+        rabbitTemplate.convertAndSend(queueName, "message", orderDto.toString());
+
         return orderDto;
     }
 

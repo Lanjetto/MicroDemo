@@ -18,6 +18,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
     implementation "org.springframework.boot:spring-boot-starter-data-jpa:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-amqp:${springVersion}"
     implementation 'org.liquibase:liquibase-core:4.31.1'
     implementation 'org.postgresql:postgresql:42.7.5'
 
