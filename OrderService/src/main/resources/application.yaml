@@ -30,6 +30,12 @@ rabbitmq:
   queue:
     name: message.direct
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+      instance:
+        hostname: order-service
 
 discount:
   service:

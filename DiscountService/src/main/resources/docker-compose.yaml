@@ -1,0 +1,22 @@
+version: '3'
+services:
+  postgres_discount:
+    image: postgres:17.4-alpine
+    container_name: discount_postgres_db
+    environment:
+      POSTGRES_DB: discount_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - discount_pg_data:/var/lib/postgresql/data
+    networks:
+      - discount_network
+
+volumes:
+  discount_pg_data:
+
+networks:
+  discount_network:
+    driver: bridge

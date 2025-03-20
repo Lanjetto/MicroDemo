@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.nexign'
+version = 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-server:4.2.0'
+    implementation 'com.google.code.gson:gson:2.12.1'
+}
+
+test {
+    useJUnitPlatform()
+}

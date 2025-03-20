@@ -17,9 +17,12 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation "org.springframework.boot:spring-boot-starter-amqp:${springVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-web:${springVersion}"
     compileOnly 'org.projectlombok:lombok:1.18.36'
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
+    implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:4.2.0'
 }
+
 
 test {
     useJUnitPlatform()

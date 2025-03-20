@@ -1,0 +1,22 @@
+version: '3'
+services:
+  postgres_order:
+    image: postgres:17.4-alpine
+    container_name: order_postgres_db
+    environment:
+      POSTGRES_DB: orders_db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+
+networks:
+  app_network:
+    driver: bridge
