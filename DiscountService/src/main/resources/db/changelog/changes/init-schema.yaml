@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: developer
+      changes:
+        - sqlFile:
+            path: classpath:db/changelog/scripts/init-schema.sql
+            relativeToChangelogFile: false

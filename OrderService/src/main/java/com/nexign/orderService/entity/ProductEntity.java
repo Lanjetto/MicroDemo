@@ -18,6 +18,15 @@ public class ProductEntity {
     @Column(name = "price", nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
+    @Column(name = "category", nullable = false)
+    private String category;
+
+    public String getCategory() {
+        return category;
+    }
+    public void setCategory(String category) {
+        this.category = category;
+    }
     public Integer getId() {
         return id;
     }
