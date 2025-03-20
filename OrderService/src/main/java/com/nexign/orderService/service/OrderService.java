@@ -1,29 +1,38 @@
 package com.nexign.orderService.service;
 
 import com.nexign.orderService.dto.Order;
+import com.nexign.orderService.dto.OrderRequest;
 import com.nexign.orderService.entity.OrderEntity;
+import com.nexign.orderService.entity.ProductEntity;
+import com.nexign.orderService.entity.UserEntity;
 import com.nexign.orderService.repostitory.OrderEntityRepository;
 import com.nexign.orderService.repostitory.ProductEntityRepository;
 import com.nexign.orderService.repostitory.UserEntityRepository;
 import com.nexign.orderService.util.OrderEntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class OrderService {
     private final OrderEntityRepository orderRepository;
     private final ProductEntityRepository productRepository;
     private final UserEntityRepository userRepository;
+    private final RestClient restClient;
     private final OrderEntityMapper orderMapper;
 
     @Autowired
-    public OrderService(OrderEntityRepository orderRepository, ProductEntityRepository productRepository, UserEntityRepository userRepository, OrderEntityMapper orderMapper) {
+    public OrderService(OrderEntityRepository orderRepository, ProductEntityRepository productRepository, UserEntityRepository userRepository, RestClient restClient, OrderEntityMapper orderMapper) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
         this.userRepository = userRepository;
+        this.restClient = restClient;
         this.orderMapper = orderMapper;
     }
 
@@ -42,9 +51,29 @@ public class OrderService {
         if (!userRepository.existsById(orderDto.userId()) || !productRepository.existsById(orderDto.productId())) {
             throw new RuntimeException("Invalid userId or productId");
         }
+
+        UserEntity userEntity = userRepository.findById(orderDto.userId()).orElseThrow();
+        ProductEntity productEntity = productRepository.findById(orderDto.productId()).orElseThrow();
+
+        OrderRequest request = OrderRequest.builder()
+                .userType(userEntity.getType())
+                .productCategory(productEntity.getCategory())
+                .price(productEntity.getPrice())
+                .build();
+
+        BigDecimal discount = restClient.post()
+                .uri("/discount")
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(request)
+                .retrieve()
+                .body(BigDecimal.class);
+
         OrderEntity entity = orderMapper.toEntity(orderDto);
-        entity.setTotalPrice(productRepository.findById(orderDto.productId()).orElseThrow().getPrice());
+        entity.setTotalPrice(productEntity.getPrice().multiply(BigDecimal.ONE.subtract(discount)));
         orderRepository.save(entity);
+        Logger.getLogger(OrderService.class.getName()).info("Created order: " + entity.getProduct() +
+                "\n Total price: " + entity.getTotalPrice() +
+                "\n Discount: " + discount);
         return orderDto;
     }
 

@@ -1,11 +1,13 @@
 package com.nexign.orderService.entity;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "products")
+@ToString
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

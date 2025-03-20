@@ -1,6 +1,7 @@
 package com.nexign.orderService.entity;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -9,6 +10,7 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "orders")
+@ToString
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +20,13 @@ public class OrderEntity {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id", nullable = false)
+    @ToString.Exclude
     private UserEntity user;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "product_id", nullable = false)
+    @ToString.Exclude
     private ProductEntity product;
 
     @Column(name = "total_price", nullable = false, precision = 10, scale = 2)
