@@ -28,7 +28,7 @@ public class DiscountService {
                         userType, productCategory, price)
                 .map(rule -> {
                     BigDecimal discount = rule.getDiscountType().equals("PERCENT")
-                            ? price.multiply(rule.getDiscountValue()).divide(BigDecimal.valueOf(100))
+                            ? price.multiply(rule.getDiscountValue())
                             : rule.getDiscountValue();
                     return new DiscountResponse(discount);
                 })

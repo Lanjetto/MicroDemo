@@ -3,4 +3,5 @@ include 'OrderService'
 include 'DiscountService'
 include 'NotificationService'
 include 'ServiceRegistry'
+include 'ApiGateway'
 

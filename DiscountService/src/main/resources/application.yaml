@@ -1,10 +1,10 @@
 server:
-  port: 8082
+  port: 0
 spring:
   application:
     name: discount-service
   datasource:
-    url: jdbc:postgresql://172.22.22.58:5433/discount_db
+    url: jdbc:postgresql://localhost:5433/discount_db
     username: user
     password: password
     driver-class-name: org.postgresql.Driver
@@ -22,5 +22,3 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-      instance:
-        hostname: discount-service

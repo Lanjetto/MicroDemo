@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AmplicodeJpaIdeaProjectConfig" newRepositoryParent="org.springframework.data.jpa.repository.JpaRepository">
+    <option name="liquibaseDirectory" value="db/changelog/changes" />
+    <option name="defaultUnitInitialized" value="true" />
+    <option name="renamerInitialized" value="true" />
+    <option name="reverseEngineeringLastDbConnectionId" value="c2c598d9-879f-4ada-b116-ec5cf2d5ad9d" />
+    <option name="reLastEntityCreationPackage" value="DiscountService/src/main/java/com/nexign/discountService/entity" />
+    <option name="includeToChangelogDirectory" value="OrderService/src/main/resources/db/changelog/db.changelog-master.yaml" />
+  </component>
+</project>

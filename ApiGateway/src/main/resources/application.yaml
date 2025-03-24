@@ -1,0 +1,24 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: apiGateway
+  cloud:
+    gateway:
+      routes:
+        - id: discount-service
+          uri: lb://discount-service
+          predicates:
+            - Path=/discount/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+

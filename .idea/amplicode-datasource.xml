@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AmplicodeJpaDataSourceConfig">
+    <data-sources>
+      <data-source id="ee628f93-1ef0-405c-a3e3-7abc4856352b" name="MicroDemo" url="jdbc:postgresql://172.22.22.58/orders_db" driverClass="org.postgresql.Driver" />
+      <data-source id="c2c598d9-879f-4ada-b116-ec5cf2d5ad9d" name="MicroDemo1" url="jdbc:postgresql://172.22.22.58:5433/discount_db" driverClass="org.postgresql.Driver" />
+    </data-sources>
+  </component>
+</project>
